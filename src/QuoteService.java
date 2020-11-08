@@ -33,10 +33,6 @@ public class QuoteService {
         return result;
     }
 
-//    public int numberOfQuotes(List<Quote> quoteList) {
-//        return quoteList.size();
-//    }
-
     public List<String> getAuthors() {
         List<String> result = new ArrayList<>();
 
@@ -46,10 +42,6 @@ public class QuoteService {
         return result;
     }
 
-//    public int numberOfAuthors(List<String> authors) {
-//        return authors.size();
-//    }
-
     public void setFavourite(int id) {
         for (Quote quote : quotes) {
             if (quote.getId() == id) {
@@ -58,11 +50,10 @@ public class QuoteService {
         }
     }
 
-//    public List<Quote> getAll() {
-//        List<Quote> result = new ArrayList<>();
-//        result.addAll(quotes);
-//        return result;
-//    }
+    public List<Quote> getAll() {
+        List<Quote> result = new ArrayList<>(quotes);
+        return result;
+    }
 
     public List<Quote> getFavourites() {
         List<Quote> result = new ArrayList<>();
@@ -76,25 +67,14 @@ public class QuoteService {
     }
 
     public String getRandomQuote() {
-        String result = "";
         Random number = new Random();
-        int id = number.nextInt(5421);
+        int id = number.nextInt(quotes.size());
 
         for (Quote quote : quotes) {
             if (quote.getId() == id) {
-                result = quote.getQuote();
+                return quote.getQuote();
             }
         }
-        return result;
+        return null;
     }
 }
-
-
-//4)    creati un obiect QuoteService care ofera urmatoarele metode:
-//   x     - getAllQuotes():List<String>
-//   x     - getQuotesForAuthor(String author): List<Quote>
-//   x     - getAuthors(): List<String>
-//   x     - setFavourite(int id)
-//   x     - getFavourites():List<Quote>
-//   x     - getRandomQuote():String : generati un numar random cu ajutorul
-//           obiectului java.util.Random si returnati quote-ul cu acel id
